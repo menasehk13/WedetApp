@@ -9,7 +9,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_nav"
         android:id="@+id/frame"/>
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"

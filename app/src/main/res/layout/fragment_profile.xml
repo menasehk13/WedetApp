@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragment"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="205dp"
+    android:orientation="vertical"
+    android:background="@android:color/darker_gray">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:src="@drawable/ic_baseline_account_profile"
+        tools:ignore="ContentDescription">
+
+    </ImageView>
+
+
+</LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="210dp"
+    android:background="@android:color/background_light"
+    android:layout_marginTop="23dp">
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        app:hintAnimationEnabled="true"
+        android:id="@+id/username1"
+        android:background="@android:color/transparent">
 
-</FrameLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_account_circle_24"
+            android:inputType="none"
+            android:text="@string/username"
+            android:id="@+id/username"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+   <com.google.android.material.textfield.TextInputLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/email1"
+       android:hint="@string/email"
+       android:layout_below="@id/username1">
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:inputType="textEmailAddress"
+           android:text="@string/email"
+           android:drawableStart="@drawable/ic_baseline_email_24"
+           android:id="@+id/email"
+           android:importantForAutofill="no"
+           tools:ignore="LabelFor" />
+   </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone1"
+        android:hint="@string/phonenumber"
+        android:layout_below="@id/email1">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_baseline_call_24"
+            android:text="@string/phonenumber"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="76dp"
+        android:layout_height="62dp"
+        android:layout_below="@id/phone1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="167dp"
+        android:id="@+id/edit_profile"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="@string/edit"
+        android:textAllCaps="false"
+        android:drawableStart="@drawable/ic_outline_edit_24"
+        tools:ignore="ContentDescription" />
+</RelativeLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shape"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:id="@+id/logout"
+        android:text="@string/logout"/>
+
+
+</LinearLayout>
