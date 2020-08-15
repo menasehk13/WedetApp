@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhoneVerificationActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="202dp"
+        android:text="@string/verifiy_your_phone_number_please_enter_your_code"
+        android:textAlignment="center"
+        android:gravity="bottom"
+        android:textSize="24sp"
+        tools:ignore="RtlCompat"
+        android:background="@drawable/background_view"
+        android:textStyle="bold"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp">
+        <EditText
+            android:hint="@string/code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:id="@+id/coderesived"
+            android:textColorHint="@android:color/black"
+            android:importantForAutofill="no"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Continue"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="55dp"
+        android:id="@+id/submitcode"
+        android:background="@drawable/background_shape"/>
+</LinearLayout>

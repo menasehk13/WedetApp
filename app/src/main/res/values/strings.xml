@@ -11,5 +11,14 @@
     <string name="phonenumber">PhoneNumber</string>
     <string name="logout">Logout</string>
     <string name="edit">Edit</string>
-
+    <string name="_251">+251</string>
+    <string name="signup">SignUp</string>
+    <string name="code">code</string>
+    <string name="verifiy_your_phone_number_please_enter_your_code">Verifiy Your Phone Number Please Enter your Code</string>
+<string name="Continue">Continue</string>
+    <string name="welcome_please_enter_your_profile">Welcome....Please Enter Your Profile</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="i_agree_to_the_terms_of_service">I Agree to The Terms of Service</string>
+    <string name="create">Create</string>
 </resources>
