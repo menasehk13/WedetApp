@@ -48,6 +48,8 @@
             android:drawableStart="@drawable/ic_baseline_account_circle_24"
             android:inputType="none"
             android:text="@string/username"
+            android:enabled="false"
+            android:focusable="false"
             android:id="@+id/username"
             android:importantForAutofill="no"
             tools:ignore="LabelFor" />
@@ -67,7 +69,9 @@
            android:drawableStart="@drawable/ic_baseline_email_24"
            android:id="@+id/email"
            android:importantForAutofill="no"
-           tools:ignore="LabelFor" />
+           tools:ignore="LabelFor"
+           android:enabled="false"
+           android:focusable="false"/>
    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -81,8 +85,11 @@
             android:inputType="phone"
             android:drawableStart="@drawable/ic_baseline_call_24"
             android:text="@string/phonenumber"
+            android:id="@+id/userphone"
             android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"
+            android:focusable="false"
+            android:enabled="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

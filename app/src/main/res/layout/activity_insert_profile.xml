@@ -89,7 +89,8 @@
             android:inputType="phone"
             android:importantForAutofill="no"
             tools:ignore="LabelFor"
-            android:editable="false"
+            android:enabled="false"
+            android:focusable="false"
             android:id="@+id/phoneofuser"/>
     </com.google.android.material.textfield.TextInputLayout>
   <RelativeLayout
