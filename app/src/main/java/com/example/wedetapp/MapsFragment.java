@@ -15,6 +15,7 @@ import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,7 +42,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 public class MapsFragment extends Fragment {
@@ -50,7 +60,7 @@ public class MapsFragment extends Fragment {
     double currentLat = 0, currentLang = 0;
     SupportMapFragment mapFragment;
     FloatingActionButton search;
-
+    MapRipple ripple;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,15 +82,20 @@ public class MapsFragment extends Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapRipple ripple= new MapRipple(gmap,new LatLng(currentLat,currentLang),getContext());
-                      ripple.withNumberOfRipples(3);
-                      ripple.withFillColor(Color.BLUE);
-                       ripple.withStrokeColor(Color.BLACK);
-                      ripple.withStrokewidth(15);
-                       ripple.withDistance(2000);
-                      ripple.withRippleDuration(20000);
-                      ripple.withTransparency(0.5f);
-                      ripple.startRippleMapAnimation();
+                MapRipple ripple=new MapRipple(gmap,new LatLng(currentLat,currentLang),getContext());
+                ripple.withNumberOfRipples(3);
+                ripple.withRippleDuration(20000);
+                ripple.withTransparency(0.5f);
+                ripple.withStrokewidth(500);
+                ripple.withStrokeColor(Color.BLUE);
+                ripple.withFillColor(Color.BLUE);
+                ripple.startRippleMapAnimation();
+                String nearbyplace="restaurant";
+                      String url="https://maps.googleapis.com/maps/api/place/nearbysearch/json?"+
+                              "?location=" +currentLat + "," + currentLang + "&radius=500000"+
+                              "&types="+ nearbyplace +"&sensor=true"
+                              + "&key="+ getResources().getString(R.string.google_api_key);
+                      new PlaceTask().execute(url);
             }
         });
     }
@@ -135,4 +150,74 @@ public class MapsFragment extends Fragment {
           }
       }
     }
+
+    private class PlaceTask extends AsyncTask<String,Integer,String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String data=null;
+            try {
+                data= downloadUrl(strings[0]);
+            } catch (IOException e) {
+
+            }
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+         new ParserTask().execute(s);
+
+        }
+    }
+
+    private String downloadUrl(String string) throws IOException{
+
+        URL url=new URL(string);
+        HttpURLConnection connection=(HttpURLConnection) url.openConnection();
+        connection.connect();
+        InputStream inputStream=connection.getInputStream();
+        BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder builder=new StringBuilder();
+        String line="";
+        while ((line=reader.readLine())!=null){
+            builder.append(line);
+        }
+        String data=builder.toString();
+        reader.close();
+        return data;
+    }
+
+    private class ParserTask extends AsyncTask<String,Integer,List<HashMap<String,String>>>{
+        @Override
+        protected List<HashMap<String, String>> doInBackground(String... strings) {
+            JsonParser jsonParser=new JsonParser();
+            List<HashMap<String,String>> maplist=null;
+            JSONObject jsonObject=null;
+            try {
+               jsonObject =new JSONObject(strings[0]);
+                maplist=jsonParser.parseResult(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return maplist;
+        }
+
+        @Override
+        protected void onPostExecute(List<HashMap<String, String>> hashMaps) {
+            gmap.clear();
+            for (int i=0;i<hashMaps.size();i++){
+                HashMap<String,String> hashMap=hashMaps.get(i);
+                double lat= Double.parseDouble(hashMap.get("lat"));
+                double lng= Double.parseDouble(hashMap.get("lng"));
+                String name=hashMap.get("name");
+                LatLng latLng=new LatLng(lat,lng);
+                MarkerOptions options=new MarkerOptions();
+                options.position(latLng);
+                options.title(name);
+                gmap.addMarker(options);
+
+            }
+        }
+    }
+
 }

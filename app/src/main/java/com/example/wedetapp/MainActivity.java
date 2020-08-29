@@ -33,7 +33,7 @@ bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Uni
         Fragment fragment=null;
         switch (model.getId()){
             case 1:
-                fragment=new HotelFragment();
+                fragment=new HotelsFragment();
                 break;
             case 2:
                 fragment=new Booking_Fragment();
