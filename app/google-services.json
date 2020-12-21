@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "217979686984",
+    "firebase_url": "https://wedetapp-c90d9.firebaseio.com",
+    "project_id": "wedetapp-c90d9",
+    "storage_bucket": "wedetapp-c90d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217979686984:android:2180b8e5bbb58407e2087d",
+        "android_client_info": {
+          "package_name": "com.example.wedetapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217979686984-uvp57mef7d63o47bdqcgqt7isv8cfjpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCquvGGW9E6U1WkBwFQhaF9VqK1WgKQ8bg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217979686984-uvp57mef7d63o47bdqcgqt7isv8cfjpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
